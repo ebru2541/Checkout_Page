@@ -7,7 +7,6 @@ control.addEventListener("click", (e) => {
   console.log(e.target);
   //* artırma
   if (e.target.className === "fa-solid fa-plus") {
-    // alert("a")
     e.target.previousElementSibling.innerText++;
     productTotal(e.target);
     bottom();
@@ -15,11 +14,8 @@ control.addEventListener("click", (e) => {
   }
   //*azaltma
   else if (e.target.className == "fa-solid fa-minus") {
-    // alert("s");
     if (e.target.nextElementSibling.innerText > 1) {
-      // alert("s");
       e.target.nextElementSibling.innerText--;
-
       productTotal(e.target);
       bottom();
       icon.play();
@@ -28,7 +24,6 @@ control.addEventListener("click", (e) => {
 
   //* remove
   else if (e.target.classList.contains("remove")) {
-    // alert("a")
     e.target.closest(".box").remove();
     bottom();
     buton.play();
