@@ -5,7 +5,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-body{
+body {
   background-color: rgb(86, 106, 103);
 }
 
@@ -66,9 +66,9 @@ i {
   border-radius: 4px;
   background-color: rgba(78, 32, 32, 0.092);
 }
-i:hover{
+i:hover {
   transform: scale(0.95);
-  background-color:rgb(174, 117, 12);
+  background-color: rgb(174, 117, 12);
 }
 
 .remove {
@@ -78,9 +78,9 @@ i:hover{
   color: white;
   border-radius: 4px;
 }
-button:hover{
+button:hover {
   transform: scale(1.1);
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .product-total {
@@ -89,13 +89,17 @@ button:hover{
 }
 
 /* bottom */
-.detail{
-display: flex;
-justify-content: space-between;
-border-top: 1px solid rgba(0, 0, 0, 0.138);
-margin-bottom: .7rem;
+.detail {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.138);
+  margin-bottom: 0.7rem;
 }
 
-strong::before{
+strong::before {
   content: "$";
+}
+
+.hidden {
+  visibility: hidden;
 }

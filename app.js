@@ -7,6 +7,9 @@ control.addEventListener("click", (e) => {
   console.log(e.target);
   //* artırma
   if (e.target.className === "fa-solid fa-plus") {
+    e.target.parentElement.parentElement
+      .querySelector(".product-total")
+      .classList.remove("hidden");
     e.target.previousElementSibling.innerText++;
     productTotal(e.target);
     bottom();
@@ -14,12 +17,21 @@ control.addEventListener("click", (e) => {
   }
   //*azaltma
   else if (e.target.className == "fa-solid fa-minus") {
-    if (e.target.nextElementSibling.innerText > 1) {
+    if (e.target.nextElementSibling.innerText > 0) {
       e.target.nextElementSibling.innerText--;
       productTotal(e.target);
       bottom();
       icon.play();
     }
+    if (e.target.nextElementSibling.innerText == 0) {
+      e.target.parentElement.parentElement
+        .querySelector(".product-total")
+        .classList.add("hidden");
+
+      // productTotal(e.target);
+      bottom();
+      icon.play();
+     } 
   }
 
   //* remove
@@ -28,7 +40,7 @@ control.addEventListener("click", (e) => {
     bottom();
     buton.play();
   }
-  audio.currentTime = 0;
+  // audio.currentTime = 0;
 });
 
 //*product total hesaplanması
@@ -59,7 +71,8 @@ const bottom = () => {
     "$" + taxvalue.toFixed(2));
 
   //* shipping
-  const shippingvalue = subTotalvalue > 300 ? 0 : 15;
+  const shippingvalue = subTotalvalue > 300 || subTotalvalue == 0 ? 0 : 15;
+
   const shippingkey = (document.querySelector(
     "#shipping"
   ).lastElementChild.innerText = "$" + shippingvalue.toFixed(2));
