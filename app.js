@@ -28,7 +28,7 @@ control.addEventListener("click", (e) => {
         .querySelector(".product-total")
         .classList.add("hidden");
 
-      // productTotal(e.target);
+     
       bottom();
       icon.play();
      } 
