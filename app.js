@@ -1,5 +1,6 @@
 const tax = 0.18;
 const control = document.querySelector(".top");
+const shopping_card = document.querySelector(".shopping-card");
 const icon = new Audio("./audio/buton1.mp3");
 const buton = new Audio("./audio/icon.mp3");
 
@@ -13,14 +14,17 @@ control.addEventListener("click", (e) => {
     e.target.previousElementSibling.innerText++;
     productTotal(e.target);
     bottom();
+    cardTotal();
     icon.play();
   }
+
   //*azaltma
   else if (e.target.className == "fa-solid fa-minus") {
     if (e.target.nextElementSibling.innerText > 0) {
       e.target.nextElementSibling.innerText--;
       productTotal(e.target);
       bottom();
+      cardTotal();
       icon.play();
     }
     if (e.target.nextElementSibling.innerText == 0) {
@@ -28,18 +32,23 @@ control.addEventListener("click", (e) => {
         .querySelector(".product-total")
         .classList.add("hidden");
 
-     
       bottom();
+      cardTotal();
       icon.play();
-     } 
+    }
   }
 
   //* remove
   else if (e.target.classList.contains("remove")) {
-    e.target.closest(".box").remove();
-    bottom();
-    buton.play();
+    if (e.target.closest(".box")) {
+      e.target.closest(".box").remove();
+      bottom();
+      buton.play();
+      cardTotal();
+      removeTop();
+    }
   }
+
   // audio.currentTime = 0;
 });
 
@@ -82,4 +91,36 @@ const bottom = () => {
   const totalkey = (document.querySelector(
     "#total"
   ).lastElementChild.innerText = "$" + totalvalue.toFixed(2));
+};
+
+//* shipping-card
+// const cardTotal = () => {
+//   const quantity = document.querySelectorAll(".quantity");
+//   const quantityTotal = [...quantity].reduce(
+//     (acc, eleman) => acc + Number(eleman.innerText),
+//     0
+//   );
+const cardTotal = () => {
+  //  const quantityTotal = quantity.length;
+  //  console.log(quantityTotal);
+
+  // const cardTotalKey = (document.querySelector(".card-total").innerText =
+  //   quantityTotal);
+
+  const quantity = document.querySelectorAll(".quantity");
+  let sum = 0;
+  quantity.forEach((item) => {
+    sum += Number(item.innerText);
+    console.log(item.innerText);
+  });
+
+  console.log(sum);
+  const cardTotalKey = (document.querySelector(".card-total").innerText = sum);
+};
+
+const removeTop = () => {
+  const quantity = document.querySelectorAll(".quantity").length;
+  if (quantity == 0) {
+    document.querySelector(".shopping-card").remove();
+  }
 };
